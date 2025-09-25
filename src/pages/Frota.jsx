@@ -1,37 +1,36 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import onibusGaragem from '../assets/onibus-garagem.jpeg';
-import frotaAlinhada from '../assets/frota-alinhada.jpeg';
-import onibusIndividual from '../assets/onibus-individual.jpeg';
+import onibusGaragem from '../assets/onibus-garagem.jpg';
+import frotaAlinhada from '../assets/frota-alinhada.jpg';
+import onibusIndividual from '../assets/onibus-individual.jpg';
 
 export default function Frota() {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const images = [
-    { src: onibusIndividual, alt: "Ônibus modelo" },
-    { src: onibusGaragem, alt: "Ônibus na garagem" },
-    { src: frotaAlinhada, alt: "Frota alinhada" }
+    { src: onibusIndividual, alt: 'Ônibus modelo' },
+    { src: onibusGaragem, alt: 'Ônibus na garagem' },
+    { src: frotaAlinhada, alt: 'Frota alinhada' },
   ];
 
-  const openImage = (index) => {
-    setSelectedImage(images[index]);
-  };
+  const openImage = (index) => setSelectedImage(images[index]);
+  const closeImage = () => setSelectedImage(null);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-black flex flex-col">
       <Header />
-      
+
       <main className="flex-grow">
-        {/* Banner com transição suave */}
+        {/* Banner */}
         <div className="relative h-[300px] md:h-[400px] overflow-hidden">
-          <img 
-            src={frotaAlinhada} 
-            alt="Nossa frota" 
+          <img
+            src={frotaAlinhada}
+            alt="Nossa frota"
             className="w-full h-full object-cover transform transition-transform duration-700 hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent">
-            <div className="absolute bottom-0 w-full p-8 transform transition-all duration-500">
+            <div className="absolute bottom-0 w-full p-8">
               <h1 className="text-4xl font-bold text-white text-center mb-4">
                 Conheça Nossa Frota
               </h1>
@@ -40,25 +39,26 @@ export default function Frota() {
         </div>
 
         <div className="container mx-auto px-4 py-8">
-          {/* Seção inicial com animação de entrada */}
-          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 -mt-16 relative z-10 transform transition-all duration-500 hover:-translate-y-1">
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Nossa frota é composta por 153 veículos com idade média de 4,2 anos, 
-              atendendo aos mais altos padrões de qualidade e conforto para nossos passageiros.
+          {/* Texto introdutório */}
+          <div className="max-w-4xl mx-auto bg-gray-900 border border-gray-700 rounded-lg shadow-lg p-8 -mt-16 relative z-10 transform transition-all duration-500 hover:-translate-y-1 hover:border-blue-500">
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Nossa frota é composta por <strong className="text-white">215 veículos</strong>, atendendo aos mais altos
+              padrões de qualidade e conforto para nossos passageiros.
             </p>
           </div>
 
-          {/* Galeria com transição suave */}
+          {/* Galeria */}
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             {images.map((image, index) => (
-              <div 
+              <button
                 key={index}
+                type="button"
                 className="group relative overflow-hidden rounded-lg shadow-lg cursor-pointer transform transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
                 onClick={() => openImage(index)}
               >
-                <img 
-                  src={image.src} 
-                  alt={image.alt} 
+                <img
+                  src={image.src}
+                  alt={image.alt}
                   className="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -66,85 +66,94 @@ export default function Frota() {
                     <h3 className="text-lg font-semibold">{image.alt}</h3>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 
-          {/* Informações com animações */}
+          {/* Informações */}
           <div className="grid md:grid-cols-2 gap-8 mt-12">
-            <div className="bg-blue-50 rounded-lg p-8 shadow-lg transform transition-all duration-500 hover:-translate-y-2">
-              <h2 className="text-2xl font-bold text-blue-800 mb-6">
-                Composição da Frota
-              </h2>
+            <div className="bg-gray-900 border border-gray-700 rounded-lg p-8 shadow-lg transform transition-all duration-500 hover:-translate-y-2 hover:border-blue-500">
+              <h2 className="text-2xl font-bold text-blue-400 mb-6">Composição da Frota</h2>
               <div className="space-y-4">
                 {[
-                  "55 veículos série 2008",
-                  "10 veículos série 2010",
-                  "60 veículos série 2011",
-                  "16 veículos série 2012",
-                  "21 veículos série 2013"
-                ].map((item, index) => (
-                  <div 
-                    key={index}
+                  '83 veículos — Convencional',
+                  '40 veículos — Convencional Ar – P.E',
+                  '21 veículos — Convencional Ar',
+                  '19 veículos — Articulado Ar',
+                  '17 veículos — Micrão',
+                ].map((item, i) => (
+                  <div
+                    key={i}
                     className="flex items-center space-x-3 transform transition-all duration-300 hover:translate-x-2"
                   >
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <p>{item}</p>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full" />
+                    <p className="text-gray-300">{item}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-blue-50 rounded-lg p-8 shadow-lg transform transition-all duration-500 hover:-translate-y-2">
-              <h2 className="text-2xl font-bold text-blue-800 mb-6">
-                Micro-ônibus e Modelos
-              </h2>
+            <div className="bg-gray-900 border border-gray-700 rounded-lg p-8 shadow-lg transform transition-all duration-500 hover:-translate-y-2 hover:border-blue-500">
+              <h2 className="text-2xl font-bold text-blue-400 mb-6">Micro-ônibus e Modelos</h2>
               <div className="space-y-4">
                 {[
-                  "4 Micro séries (2008)",
-                  "6 Micros série 2012",
-                  "Modelos: Volkswagen, Mercedes e Volvo"
-                ].map((item, index) => (
-                  <div 
-                    key={index}
+                  '2 micro-ônibus (estimativa a partir do cadastro)',
+                  'Modelos mais comuns: Convencional, Convencional Ar – P.E, Convencional Ar, Articulado Ar e Micrão',
+                ].map((item, i) => (
+                  <div
+                    key={i}
                     className="flex items-center space-x-3 transform transition-all duration-300 hover:translate-x-2"
                   >
-                    <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    <p>{item}</p>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full" />
+                    <p className="text-gray-300">{item}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 p-4 bg-white rounded-lg transform transition-all duration-500 hover:scale-105">
-                <h3 className="text-lg font-semibold text-blue-800 mb-2">
-                  Manutenção
-                </h3>
-                <p className="text-gray-700">
-                  Percorremos mais de 1.000.000,00 km mensais e contamos com uma oficina própria 
-                  que executa quase todos os serviços necessários à nossa frota.
+              <div className="mt-8 p-4 bg-gray-800 border border-gray-600 rounded-lg transform transition-all duration-500 hover:scale-105 hover:border-blue-500">
+                <h3 className="text-lg font-semibold text-blue-400 mb-2">Manutenção</h3>
+                <p className="text-gray-300">
+                  Percorremos mais de <strong className="text-white">1.500.000 km</strong> mensais e contamos com uma
+                  oficina própria que executa quase todos os serviços necessários à nossa frota.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Estatísticas com animações */}
+          {/* Cards de estatísticas */}
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             {[
-              { value: "153", label: "Veículos na frota" },
-              { value: "4.2", label: "Anos de idade média" },
-              { value: "1M+", label: "Km percorridos/mês" }
-            ].map((stat, index) => (
-              <div 
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-lg text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl"
+              { value: '215', label: 'Veículos na frota' },
+              { value: '15M+', label: 'Idade média (anos)' }, // sem coluna de ano no CSV atual
+              { value: '1.5M+', label: 'Km percorridos/mês' },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className="bg-gray-900 border border-gray-700 p-6 rounded-lg shadow-lg text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:border-blue-500"
               >
-                <div className="text-3xl font-bold text-blue-600 mb-2">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">{stat.value}</div>
+                <div className="text-gray-300">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </main>
+
+      {/* Modal de imagem */}
+      {selectedImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4"
+          onClick={closeImage}
+        >
+          <img
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            className="max-h-[85vh] max-w-[95vw] rounded-lg shadow-2xl"
+          />
+        </div>
+      )}
 
       <Footer />
     </div>

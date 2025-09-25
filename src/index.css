@@ -22,3 +22,62 @@
 .carousel-slide {
   transition: opacity 0.5s ease-in-out;
 }
+
+/* Carrossel Netflix Style */
+.netflix-carousel {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.netflix-carousel::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+.netflix-item {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.netflix-item:hover {
+  transform: scale(1.1) translateZ(0);
+  z-index: 50;
+}
+
+/* Botões de navegação com hover suave */
+.netflix-nav-btn {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.netflix-nav-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+/* Animação de entrada dos cards */
+.netflix-item {
+  animation: slideInFromRight 0.6s ease-out;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scroll suave */
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+/* Netflix Carousel - Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar { 
+  display: none; 
+}
+.no-scrollbar { 
+  scrollbar-width: none; 
+}
